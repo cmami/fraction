@@ -31,7 +31,7 @@ class Fraction():
             raise Exception('Fraction.__init__(): numerator must be int')
         if denominator is None:
             denominator=1
-        if not isinstance(denominator,int):
+        elif not isinstance(denominator,int):
             raise Exception('Fraction.__init__(): denominator must be int')
         if numerator<0 and denominator<0:
             self.num=-1*numerator
