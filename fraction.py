@@ -115,7 +115,7 @@ class Fraction():
         """Rebase self and rhs to common denominator"""
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.rebase(): rhs must be a Fraction')
         if self.den==rhs.den:
             return self
