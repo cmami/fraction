@@ -117,18 +117,17 @@ class Fraction():
             rhs=Fraction(rhs,1)
         elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.rebase(): rhs must be a Fraction')
-        if self.den==rhs.den:
-            return self
-        self.num*=rhs.den
-        rhs.num*=self.den
-        self.den*=rhs.den
-        rhs.den=self.den
+        if self.den!=rhs.den:
+            self.num*=rhs.den
+            rhs.num*=self.den
+            self.den*=rhs.den
+            rhs.den=self.den
         return self
 
     def __add__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__add__(): rhs must be a Fraction')
         lhs=copy.deepcopy(self)
         if not lhs.num or not lhs.den:
@@ -151,7 +150,7 @@ class Fraction():
     def __sub__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__sub__(): rhs must be a Fraction')
         self.rebase(rhs)
         lhs=copy.deepcopy(self)
@@ -165,7 +164,7 @@ class Fraction():
     def __mul__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__mul__(): rhs must be a Fraction')
         if not rhs.den or not self.den:
             raise Exception(
@@ -182,7 +181,7 @@ class Fraction():
     def __eq__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__eq__(): rhs must be a Fraction')
         self.reduct()
         rhs.reduct()
@@ -202,7 +201,7 @@ class Fraction():
     def __lt__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__lt__(): rhs must be a Fraction')
         if self.den==rhs.den:
             return self.num<rhs.num
@@ -216,7 +215,7 @@ class Fraction():
     def __gt__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__gt__(): rhs must be a Fraction')
         if self.den==rhs.den:
             return self.num>rhs.num
@@ -230,7 +229,7 @@ class Fraction():
     def __le__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__le__(): rhs must be a Fraction')
         if self.eq(rhs):
             return True
@@ -243,7 +242,7 @@ class Fraction():
     def __ge__(self,rhs):
         if isinstance(rhs,int):
             rhs=Fraction(rhs,1)
-        if not isinstance(rhs,Fraction):
+        elif not isinstance(rhs,Fraction):
             raise Exception('Fraction.__ge__(): rhs must be a Fraction')
         if self.eq(rhs):
             return True
