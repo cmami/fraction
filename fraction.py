@@ -21,7 +21,7 @@ def lcm(a,b):
 class Fraction():
     """Fraction manipulation class"""
     prettyFlag=True # class variable
-    def __init__(self,numerator,denominator=None):
+    def __init__(self,numerator,denominator=1):
         if isinstance(numerator,Fraction):
             # "copy constructor"
             self.num=numerator.num
@@ -29,9 +29,7 @@ class Fraction():
             return
         if not isinstance(numerator,int):
             raise Exception('Fraction.__init__(): numerator must be int')
-        if denominator is None:
-            denominator=1
-        elif not isinstance(denominator,int):
+        if not isinstance(denominator,int):
             raise Exception('Fraction.__init__(): denominator must be int')
         if numerator<0 and denominator<0:
             self.num=-1*numerator
